@@ -1,0 +1,26 @@
+.box{
+    background: blue;
+    width: 200px;
+    height: 200px;
+    font-size: 20px;
+    display: inline-block;
+    color: aliceblue;
+    
+}
+
+/* inline 은 element다 그래서 높이와 너비를 가질수 없다 */
+/* 자세히 보면 inline-block 은 우리가 마진을 따로 주지 않아도 공간이 생긴다 */
+.box:nth-child(2){
+    margin-left: 50px;
+}
+
+
+.box:nth-child(3){
+    margin-left: 40px;
+}
+
+/* 그냥 막무가내로 픽셀 단위로 정하게 되면 반응형 에서 디자인이 파괴된다 그렇기에 우린 
+flexbox가 나온것이다*/
+
+/*각 기술이 왜 생긴것인가(문제점을 알고), 그 기술을 보완하려는 기술을 알고, 그리고 어떻게 해결하였는지를 공부하고 하는것이 중요*/
+/* 왜 배워야 하는지를 알아야한다.*/
