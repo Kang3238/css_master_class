@@ -1,0 +1,204 @@
+/* .grid{
+    display: grid;
+    grid-template-columns: 250px 250px 250px;
+    grid-gap: 10px; 
+    grid-row-gap: 10px;
+    grid-column-gap: 10px;
+    grid-template-rows: 100px 100px;
+} */
+/* grid도 부모 클래스에서 일어난다. */
+/* colums 은 세로의 열들 grid template columns 는 세로의 열들을 하나하나 크기 지정해주는것
+gap 사용시 세로의 여백이 생김 */
+/* 또한 기본적으로 열,행 의 크기가 설정되어 있지 않은 경우 div 안에 있는 숫자 즉 콘텐트의 크기에 기준으로
+행, 열 의 크기가 지정된다. */
+
+/* .child{
+    
+    background: red;
+    color: white;
+    font-size: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+} */
+/* basis는 main axis 에 반응하여 width,height가 될수 있는 요소 */
+
+
+
+/* grid는 우리가 flex를 사용할때의 문제점을 보와해 주기 위해 존재한다. 
+그문제점중 하나는 각각에 마진을 공통적으로 주는경우(하나하나 다 줄수 없다), 또한 빈공간없이 혹은 있게 제작을
+하고 싶은데 계속 빈공간이 생기거나 생기지 않는 경우에 그리드를 사용 하여 규격을 맞출수 있다. */
+
+.grid{
+    /* fr은 사용가능한 공간 이라는 뜻이다. 
+    이때 중요한 점은 grid class(container)를 기준으로 크기를 얻는것
+    width가 100px이면 크기가 100으로 잡힌다.  이것은 어디서 쓰게되나
+    하면 px는 고정 값이다 유동적이지 못함 즉 핸드폰에게는 큰 수치임
+    그렇기에 우리는 % 나 fr을 사용하여 상대적인 크기를 적용해 줄수가 있다.
+    
+    주의해야 할 부분은 fr은 수평 크기는 있지만 수직 크기는 없어서 row에다가 
+    높이 설정없이 fr을 주면 표현이 안된다.*/
+    
+    display: grid;
+    height: 250vh;
+    font-size: 20px;
+    gap: 10px;
+
+
+    
+    /* repeat의 갯수에 auto fit 과 auto fill이 들어갈수 있다
+    이때 auto fit은 기존의 div 갯수를 유지한채 늘어난 길이만큼 div의 갯수를 늘리고 auto fill 은 div의 갯수는 유지한채 
+    div의 길이를 늘린다.*/
+
+    grid-template-columns: repeat(5,minmax(100px,1fr));
+    grid-template-rows: repeat(4,100px);
+    /* grid-template-rows: repeat(4,100px); */
+    grid-auto-rows: 100px;
+    grid-auto-columns: 100px;
+
+    /* grid-template-columns: repeat(5,minmax(100px,1fr));
+    이부분 에서 grid 이니까 columns개수를 5개 줘야하는데 까먹고
+    4개 줘놓고 왜 안되지 함 ㅋㅋ 여튼 각설하고 minmax는(최소값,그이후의값)
+    인데 최솟값은 화면을 줄였을때 최대로 줄어든 값이고 최대값은 100px을 넘는
+    값일때 어떠한 값을 적용할지를 나타냄 */
+
+    /* grid-auto-flow: column; */
+
+    grid-auto-flow: row;
+
+    /* grid-auto-flow 요소들의 순서 즉 재배치이다. row로 재배치 인지
+    columns로 재배치인지 하는것 flow의 기본값은 row이므로 걱정 많이 하지말자*/
+
+    /* grid-template-rows 는 가로 높이의 설정값 근데 
+    div의 수가 많아지면 모든걸 설정해줄수가 없다 그럴때
+    쓰는것이 grid auto rows를 사용 그럼 나머지를 알아서 적용
+    단 위에서 먼저 template-rows를 적용했으면 그것 먼저 적용하고
+    다음것들을 자동으로 적용한다. */
+
+
+
+    /* justify-items: center; */
+    /* place-items: stretch stretch;
+    justify-content: space-between;
+    align-content: flex-end; */
+    
+    /* align-content: stretch;
+    place-content: start center; */
+
+    /* place-content 도 place-item과 마찬가지로 수직 수평 
+    순으로 값을 주면 정렬이 된다. align,justify ~ 순서로 주면됨*/
+
+    /* items 와 content는 구별 해야한다. item은 grid(container)속에 속해 있는 요소이고
+    content는 grid를 가지고 있는 전체 body를 조절한다. 즉 grid를 움직인다. 
+    space-between 쓰면 grid끼리 떨어짐*/
+    /* place-items는 수직/수평 으로 값 입력하면됨 */
+    /* grid안에서의  justify-items,align-items니까 안에서 정렬되어 움직임
+    둘다 기본값은 strach 이다.
+    단, 여기서 각 grid의 items들의 크기를 정해주면 그 크기로 고정되어 배열됨*/
+
+    /* grid-template: 
+    "header header header header "1fr
+    "content content content nav" 2fr
+    "footer footer footer footer" 1fr/ 1fr 1fr 1fr 1fr;
+     */
+/* grid-template는 ""<-안에 내가 네밍 한것을 순서대로 적어서 넣고
+바로 오른쪽에는 row를 적는다. 그리고 '/'를 통해 width를 설정해주면 됨 
+단 여기서는 repeat은 적용안됨*/
+
+    /* grid-template-areas: 
+    "header header header header"
+    "content content content nav"
+    "content content content nav"
+    "footer footer footer footer"
+    ; */
+
+}
+/* repeat를 사용하면 값으로 (반복 갯수, 크기) 를 사용할수 있다.
+ */
+ /* auto 쓰면 나머지 전부 auto 됨 사용하지 않은 부분 */
+
+
+/* .item:nth-child(odd){
+    background: blue;
+}
+.item:nth-child(even){
+    background: red;
+} */
+
+
+
+.item{
+    background: greenyellow;
+}
+
+/* .grid1{
+    display: grid;
+    gap: 5px;
+    height: 100px;
+    grid-template-columns: repeat(auto-fit,minmax(100px,1fr));
+    
+} */
+.grid1{
+    display: grid;
+    gap: 5px;
+    grid-auto-rows: 100px;
+}
+.grid2{
+    display: grid;
+    gap: 5px;
+    grid-auto-rows: 100px;
+}
+.grid1:first-child {
+    
+    grid-template-columns: repeat(auto-fill,minmax(100px,1fr));
+    
+}
+
+.grid2:first-child {
+    
+    grid-template-columns: repeat(auto-fill,minmax(100px,1fr));
+    
+}
+
+
+
+
+
+.header{
+    background-color: coral;
+    /* grid-column:span 4 */
+    /* grid-area: header; */
+    /* place-self : end center; */
+    /* place-self 인식은 안되도 잘 먹는다. */
+}
+.content{
+    background-color: aqua;
+    /* grid-area: content; */
+}
+.nav{
+    background-color: blue;
+    /* grid-area: nav; */
+}
+.footer{
+    background-color: brown;
+    /* grid-area: footer; */
+}
+
+/* grid-area: footer; */
+/* grid area를 사용하면 값으로 string을 사용하면 안되고 그냥 이름을 적어주면 
+알아서 이름이 지정된다. 그렇게 지정된 이름은 grid template area에서 쉼표 없이 "" 값을 하나씩 주면
+알아서 먹는다. */
+
+/* grid-column-start: 1;
+    grid-column-end: 5; 
+    grid-column의 시작이 1 이면 첫번째 줄에서의 시작이다.
+    세로 맨 첫줄에서 시작하여 마지막 줄까지 쭉 이어진다는뜻
+    또한 grid 안에서 원하는 만큼 늘릴수 있으니 아주 유용함
+    grid-column: 1/5 가 위와 같다.
+    값에서 '-1'은 끝까지 이고, '-2' 는 마지막 에서 앞까지 이다.
+    또한 span이 있는데 span 4 라고 적어주면 4개의 cell을 포함한다는 뜻
+    셀이 4개라면 처음부터 끝까지임
+    단 span 0 은 기본 1개의 셀을 포함, 2부터 2개의 셀을 포함한다.
+    이부분은 헷갈리는게 많다 column과 row부분이 헷갈리므로 다시한번 봐야함*/
+
